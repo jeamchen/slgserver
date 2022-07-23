@@ -9,7 +9,7 @@ import (
 )
 
 func getChatServerAddr() string {
-	host := config.File.MustValue("chatserver", "host", "")
+	host := config.File.MustValue("chatserver", "host", "127,0,0,1")
 	port := config.File.MustValue("chatserver", "port", "8002")
 	return host + ":" + port
 }
