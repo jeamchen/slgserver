@@ -1,13 +1,13 @@
-
 package db
 
 import (
 	"database/sql"
 	"errors"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"os"
 	"slgserver/config"
+
+	_ "github.com/go-sql-driver/mysql"
 	"xorm.io/xorm"
 	"xorm.io/xorm/log"
 )
@@ -24,6 +24,7 @@ var (
 // TestDB 测试数据库
 func TestDB() error {
 	mysqlConfig, err := config.File.GetSection("mysql")
+	fmt.Println("db-conn.go mysqlConfig:", mysqlConfig)
 	if err != nil {
 		fmt.Println("get mysql config error:", err)
 		panic(err)
@@ -72,7 +73,6 @@ func Init() error {
 		return err
 	}
 
-
 	// 启动时就打开数据库连接
 	if err = initEngine(mysqlConfig); err != nil {
 		fmt.Println("mysql is not open:", err)
@@ -112,7 +112,7 @@ func initEngine(mysqlConfig map[string]string) error {
 	logLevel := config.File.MustInt("xorm", "log_level", 1)
 	logFile := config.File.MustValue("xorm", "log_file", "")
 
-	if logFile != ""{
+	if logFile != "" {
 		f, _ := os.Create(logFile)
 		MasterDB.SetLogger(log.NewSimpleLogger(f))
 	}

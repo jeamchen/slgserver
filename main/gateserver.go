@@ -10,7 +10,7 @@ import (
 )
 
 func getGateServerAddr() string {
-	host := config.File.MustValue("gateserver", "host", "")
+	host := config.File.MustValue("gateserver", "host", "127.0.0.1")
 	port := config.File.MustValue("gateserver", "port", "8004")
 	return host + ":" + port
 }

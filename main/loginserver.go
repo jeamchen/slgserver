@@ -9,7 +9,7 @@ import (
 )
 
 func getLoginServerAddr() string {
-	host := config.File.MustValue("loginserver", "host", "")
+	host := config.File.MustValue("loginserver", "host", "127.0.0.1")
 	port := config.File.MustValue("loginserver", "port", "8003")
 	return host + ":" + port
 }

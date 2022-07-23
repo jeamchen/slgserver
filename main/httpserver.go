@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
-	mw "github.com/labstack/echo/v4/middleware"
 	"log"
 	"slgserver/config"
 	"slgserver/db"
 	"slgserver/server/httpserver/controller"
+
+	"github.com/labstack/echo/v4"
+	mw "github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -23,7 +24,7 @@ func main() {
 }
 
 func getHttpAddr() string {
-	host := config.File.MustValue("httpserver", "host", "")
+	host := config.File.MustValue("httpserver", "host", "127.0.0.1")
 	port := config.File.MustValue("httpserver", "port", "8088")
 	return host + ":" + port
 }
